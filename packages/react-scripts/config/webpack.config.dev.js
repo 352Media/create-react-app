@@ -123,22 +123,22 @@ module.exports = {
 
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      // {
-      //   test: /\.(js|jsx|mjs)$/,
-      //   enforce: 'pre',
-      //   use: [
-      //     {
-      //       options: {
-      //         formatter: eslintFormatter,
-      //         eslintPath: require.resolve('eslint'),
-      //         ignore: true,
-      //         useEslintrc: true,
-      //       },
-      //       loader: require.resolve('eslint-loader'),
-      //     },
-      //   ],
-      //   include: paths.appSrc,
-      // },
+      {
+        test: /\.(js|jsx|mjs)$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              formatter: eslintFormatter,
+              eslintPath: require.resolve('eslint'),
+              ignore: true,
+              useEslintrc: true,
+            },
+            loader: require.resolve('eslint-loader'),
+          },
+        ],
+        include: paths.appSrc,
+      },
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
@@ -181,7 +181,7 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             use: [
               require.resolve('style-loader'),
               {
@@ -209,6 +209,9 @@ module.exports = {
                     }),
                   ],
                 },
+              },
+              {
+                loader: require.resolve('less-loader'),
               },
             ],
           },
