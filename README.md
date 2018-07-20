@@ -1,3 +1,36 @@
+# 352 Fork!
+
+`create-react-app` was forked in order to add a few baseline features to
+`react-scripts` for 352's convenience. Specifically, these features are:
+
+* LESS support
+* Babel stage-0 & decorator support
+* Project-level ESLint config support
+* Allow ESLint errors & warnings during build
+
+## Releasing new versions of the 352 fork
+
+This is a monorepo which includes more than _just_ `react-scripts`. In order
+to publish new versions of the 352 fork. Follow the instructions below:
+
+1. Make required changes (`react-scripts` resides in `./packages/react-scripts`)
+1. Commit changes
+1. Update version in `./packages/react-scripts/package.json`, keep the main semver
+   portion consistent with the upstream, just increment the custom-X number
+    * When committing, use the format `chore: Release react-scripts@X.X.X-custom-X`
+      for consistency
+1. `git tag react-scripts@X.X.X-custom-X`
+1. `git push origin master --tags`
+1. Ensure you're logged in to NPM with access to the `@352inc` namespace
+1. `npm publish --access public`
+
+Hooray! You're all done! Now update your project's version or if you're creating
+a new project via CRA, you can use the following command:
+
+`create-react-app <<APP NAME>> --scripts-version @352inc/react-scripts`
+
+---
+
 # Create React App [![Build Status](https://travis-ci.org/facebookincubator/create-react-app.svg?branch=master)](https://travis-ci.org/facebookincubator/create-react-app)
 
 Create React apps with no build configuration.
